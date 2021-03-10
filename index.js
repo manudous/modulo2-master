@@ -1,67 +1,81 @@
 //1. Array operations
 // Head
 // Implementa una función head (inmutable), tal que, dado un array como entrada extraiga y devuelva su primer elemento. Utiliza destructuring.
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+var __assign =
+  (this && this.__assign) ||
+  function () {
+    __assign =
+      Object.assign ||
+      function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
+          s = arguments[i];
+          for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
         }
         return t;
-    };
+      };
     return __assign.apply(this, arguments);
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+  };
+var __spreadArray =
+  (this && this.__spreadArray) ||
+  function (to, from) {
     for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
+      to[j] = from[i];
     return to;
-};
+  };
 var array1 = ["hola", "adios", "hasta luego"];
 var head = function (_a) {
-    var first = _a[0];
-    return first;
+  var first = _a[0];
+  return first;
 };
 console.log(head(array1));
 //Tail
 //Implementa una función tail (inmutable), tal que, dado un array como entrada ///devuelta todos menos el primer elemento. Utiliza rest operator.
 var array2 = ["hola", "adios", "hasta luego"];
 var tail = function (_a) {
-    var words = _a.slice(1);
-    return words;
+  var words = _a.slice(1);
+  return words;
 };
 console.log(tail(array2));
 //Init
 //Implementa una función init (inmutable), tal que, dado un array como entrada ///devuelva todos los elementos menos el último. Utiliza los métodos que ofrecArray.prototype.
 var array3 = [1, 2, 3, 4, 5];
-var init = function (array) { return array.splice(0, array.length - 1); };
+var init = function (array) {
+  return array.splice(0, array.length - 1);
+};
 console.log(init(array3));
 //Last
 // Implementa una función last (inmutable), tal que, dado un array como entrada // devuelva el último elemento.
 var array4 = [1, 2, 3, 4, 5];
-var last = function (array) { return array.pop(); };
+var last = function (array) {
+  return array.pop();
+};
 console.log(last(array4));
 // 2. Concat
 // Implementa una función concat (inmutable) tal que, dados 2 arrays como // ///// entrada, devuelva la concatenación de ambos. Utiliza rest / spread operators.
 var a = [1, 2, 3, 4];
 var b = [5, 6, 7, 8, 9];
-var concat = function (a, b) { return __spreadArray(__spreadArray([], a), b); };
+var concat = function (a, b) {
+  return __spreadArray(__spreadArray([], a), b);
+};
 console.log(concat(a, b));
 // Opcional
 // Implementa una versión del ejercicio anterior donde se acepten múltiples //arrays de entrada (más de 2).
 var c = [10, 11, 12];
 var d = [13, 24];
 var concatMultiple = function () {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
-    return args.reduce(function (arg, currentArg) { return __spreadArray(__spreadArray([], arg), currentArg); });
+  var args = [];
+  for (var _i = 0; _i < arguments.length; _i++) {
+    args[_i] = arguments[_i];
+  }
+  return args.reduce(function (arg, currentArg) {
+    return __spreadArray(__spreadArray([], arg), currentArg);
+  });
 };
 console.log(concatMultiple(a, b, c, d));
 var names = { name: "Maria", surname: "Ibañez", country: "SPA" };
 function clone(source) {
-    return __assign({}, source);
+  return __assign({}, source);
 }
 console.log(clone(names));
 // Merge
@@ -73,23 +87,21 @@ var f = { name: "Luisa", age: 31, married: true };
 // merge(a, b); // {name: "Maria", age: 31, married: true, surname: "Ibañez", country: "SPA"}
 //TIP: Puedes usar la función "clone" del apartado A.
 function merge(source, target) {
-    return __assign(__assign({}, clone(target)), clone(source));
+  return __assign(__assign({}, clone(target)), clone(source));
 }
 console.log(merge(e, f));
 var books = [
-    { title: "Harry Potter y la piedra filosofal", isRead: true },
-    { title: "Canción de hielo y fuego", isRead: false },
-    { title: "Devastación", isRead: true },
+  { title: "Harry Potter y la piedra filosofal", isRead: true },
+  { title: "Canción de hielo y fuego", isRead: false },
+  { title: "Devastación", isRead: true },
 ];
-function isBookRead(books, titleToSearch) {
-    return books.some(function (book) {
-        return book.title === titleToSearch ? book.isRead : false;
-    });
-}
-// console.log( books.some((book) => (book.title === "Harry Potter y la piedra filosofal") ? book.isRead : false))
+
+const isBookRead = (books, titleToSearch) => books.some((book) => book.title === titleToSearch && book.isRead);
+
 console.log(isBookRead(books, "Devastación")); // true
 console.log(isBookRead(books, "Canción de hielo y fuego")); // false
 console.log(isBookRead(books, "Los Pilares de la Tierra")); // false
+
 // Opcional
 // Utiliza Typescript para añadir los tipos adecuados.
 // 5. Slot Machine
@@ -100,27 +112,26 @@ console.log(isBookRead(books, "Los Pilares de la Tierra")); // false
 // "Good luck next time!!".
 // Ejemplo de uso
 var SlothMachine = /** @class */ (function () {
-    function SlothMachine() {
-        this.coinCounter = 0;
+  function SlothMachine() {
+    this.coinCounter = 0;
+  }
+  SlothMachine.prototype.boolRandom = function () {
+    return Math.random() < 0.5;
+  };
+  SlothMachine.prototype.play = function () {
+    this.coinCounter++;
+    var roulette1 = this.boolRandom();
+    var roulette2 = this.boolRandom();
+    var roulette3 = this.boolRandom();
+    if (roulette1 && roulette2 && roulette3) {
+      console.log("Congratulations!!!. You won " + this.coinCounter + " coins");
+      this.coinCounter = 0;
+    } else {
+      console.log("Good Luck next time!!");
     }
-    SlothMachine.prototype.boolRandom = function () {
-        return Math.random() < 0.5;
-    };
-    SlothMachine.prototype.play = function () {
-        this.coinCounter++;
-        var roulette1 = this.boolRandom();
-        var roulette2 = this.boolRandom();
-        var roulette3 = this.boolRandom();
-        if (roulette1 && roulette2 && roulette3) {
-            console.log("Congratulations!!!. You won " + this.coinCounter + " coins");
-            this.coinCounter = 0;
-        }
-        else {
-            console.log("Good Luck next time!!");
-        }
-    };
-    return SlothMachine;
-}());
+  };
+  return SlothMachine;
+})();
 var machine1 = new SlothMachine();
 machine1.play(); // "Good luck next time!!"
 machine1.play(); // "Good luck next time!!"

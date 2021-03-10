@@ -101,13 +101,7 @@ const books: bookTypes[] = [
   { title: "Devastación", isRead: true },
 ];
 
-function isBookRead(books: bookTypes[], titleToSearch: string): boolean {
-  return books.some((book) =>
-    book.title === titleToSearch ? book.isRead : false
-  );
-}
-
-// console.log( books.some((book) => (book.title === "Harry Potter y la piedra filosofal") ? book.isRead : false))
+const isBookRead = (books: bookTypes[], titleToSearch: string): boolean => books.some((book) => book.title === titleToSearch && book.isRead);
 
 console.log(isBookRead(books, "Devastación")); // true
 console.log(isBookRead(books, "Canción de hielo y fuego")); // false
